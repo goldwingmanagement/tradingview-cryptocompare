@@ -1,7 +1,8 @@
 // api/stream.js
-import { LibrarySymbolInfo, ResolutionString, SubscribeBarsCallback } from '../../../charting_library/charting_library.js';
 import historyProvider from './history';
 import environment from '../../../environment.json';
+import { Bar, Sub } from '../../../general/models';
+import { LibrarySymbolInfo, ResolutionString, SubscribeBarsCallback } from '../../../charting_library/charting_library';
 
 const apiKey = environment.apiKey;
 const url = 'wss://streamer.cryptocompare.com/v2?api_key=' + apiKey;
@@ -10,24 +11,6 @@ const wss = new WebSocket(url);
 
 // keep track of subscriptions
 var _subs: Sub[] = [];
-
-export interface Sub {
-  listenerGuid: string;
-  channelString: string;
-  resolution: ResolutionString;
-  symbolInfo: LibrarySymbolInfo;
-  lastBar: Bar;
-  listener: SubscribeBarsCallback;
-}
-
-export interface Bar {
-  time: number;
-  open: number;
-  high: number;
-  low: number;
-  close: number;
-  volume: number;
-}
 
 const subscription =  {
   subscribeBars: function(symbolInfo: LibrarySymbolInfo, resolution: ResolutionString, onTick: SubscribeBarsCallback, listenerGuid: string, onResetCacheNeededCallback: () => void) {

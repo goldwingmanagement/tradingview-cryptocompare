@@ -15,6 +15,7 @@ import Datafeed from './api/index';
 import { connect } from 'react-redux';
 import { PreferenceState } from '../../redux/slices/preference';
 import { AuthenticationState } from '../../redux/slices/authentication';
+import { getCoins, getExchangeMarkets, getExchanges } from '../../redux/slices/market';
 
 export interface ChartContainerProps {
 	symbol: ChartingLibraryWidgetOptions['symbol'];
@@ -38,6 +39,7 @@ export interface ChartContainerProps {
 	preference: PreferenceState | undefined | null;
 	getExchanges: any;
 	getCoins: any;
+	getExchangeMarkets: any;
 }
 
 export interface ChartContainerState {
@@ -67,12 +69,16 @@ class TVChartContainer extends React.PureComponent<Partial<ChartContainerProps>,
 		authentication: null,
 		preference: null,
 		getExchanges: null,
-		getCoins: null
+		getCoins: null,
+		getExchangeMarkets: null,
 	};
 
 	private tvWidget: IChartingLibraryWidget | null = null;
 
 	public componentDidMount(): void {
+		this.props.getCoins();
+		this.props.getExchanges();
+		this.props.getExchangeMarkets();
 		const widgetOptions: ChartingLibraryWidgetOptions = {
 			symbol: this.props.symbol as string,
 			// BEWARE: no trailing slash is expected in feed URL
@@ -182,4 +188,10 @@ function mapStateToProps(state: any) {
 	};
 }
 
-export default connect(mapStateToProps)(TVChartContainer);
+const mapDispatchToProps = {
+	getCoins,
+	getExchangeMarkets,
+	getExchanges
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TVChartContainer);

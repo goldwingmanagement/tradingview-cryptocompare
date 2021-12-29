@@ -29,6 +29,10 @@ const slice = createSlice({
       state.tradeModal = !state.tradeModal;
     },
 
+    toggleOrdersModal(state: WritableDraft<ModalState>, _action: PayloadAction<string>) {
+      state.ordersModal = !state.ordersModal;
+    },
+
     // SET ERROR
     setError(state: WritableDraft<ModalState>, action: PayloadAction<string>) {
       state.error = action.payload;

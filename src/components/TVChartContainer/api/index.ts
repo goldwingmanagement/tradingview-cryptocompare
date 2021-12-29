@@ -15,7 +15,8 @@ import {
 
 import historyProvider from './history';
 import stream from './stream';
-import symbols from './symbols';
+import { RootState, store } from '../../../redux/store';
+import { setCurrentSymbol } from '../../../redux/slices/market';
 
 const supportedResolution: ResolutionString[] = [
 	'1' as ResolutionString,
@@ -36,7 +37,8 @@ class Datafeed implements IBasicDataFeed {
 
 	async searchSymbols(userInput: string, exchange: string, symbolType: string, onResult: SearchSymbolsCallback): Promise<void> {
 		console.log('TradingView "searchSymbols" running.');
-		const searchSymbolList = symbols.getSymbolList();
+		const data: RootState = store.getState();
+		const searchSymbolList = data.market.searchSymbols;
 		if (exchange === 'ALL') {
 			const filter = searchSymbolList.filter(x => x.full_name.toUpperCase().includes(userInput.toUpperCase())).slice(0, 100);
 			onResult(filter);
@@ -50,8 +52,8 @@ class Datafeed implements IBasicDataFeed {
 		console.log('TradingView "resolveSymbol" running.');
 		try {
 			// symbolName is the full_name
+			store.dispatch(setCurrentSymbol(symbolName));
 			var splitData = symbolName.split(/[:/]/);
-			console.log({symbolName});
 			var symbolStub: LibrarySymbolInfo = {
 				name: symbolName,
 				description: '',
@@ -71,7 +73,6 @@ class Datafeed implements IBasicDataFeed {
 				listed_exchange: '',
 				format: 'price'
 			};
-			console.log('Resolving that symbol....', symbolStub); 
 			setTimeout(() => onResolve(symbolStub), 0);
 		} catch (err) {
 			console.trace(err);
@@ -104,9 +105,9 @@ class Datafeed implements IBasicDataFeed {
 	}
 	async onReady(callback: OnReadyCallback): Promise<void> {
 		console.log('TradingView "onReady" running.');
-		const exchangeList = await symbols.getExchangeList();
-		symbols.getSymbols(exchangeList);
-		this._configuration.exchanges = exchangeList;
+		const data: RootState = store.getState();
+		const exchanges = data.market.exchanges;
+		this._configuration.exchanges = exchanges;
 		setTimeout(() => callback(this._configuration), 0);
 	}
 }

@@ -26,7 +26,7 @@ const historical = {
     const json = response.data;
     if (json.Data.length) {
       console.log(`Actually returned: ${new Date(json.TimeFrom * 1000).toISOString()} - ${new Date(json.TimeTo * 1000).toISOString()}`);
-      var bars = json.Data.map((el: Bar) => {
+      var bars = json.Data.map((el: CBar) => {
         return {
           time: el.time * 1000,
           low: el.low,
@@ -49,7 +49,7 @@ const historical = {
 
 export default historical;
 
-export interface Bar {
+export interface CBar {
   time: number; 
   low: number; 
   high: number; 
