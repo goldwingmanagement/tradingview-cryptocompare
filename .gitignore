@@ -18,7 +18,6 @@
 .env.test.local
 .env.production.local
 
-environment.json
 charting_library
 
 npm-debug.log*
