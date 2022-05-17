@@ -13,3 +13,9 @@ Start project by running the following in terminal or command prompt:
 ```bash
 npm start
 ```
+
+# Demo
+[TradingView CryptoCompare](https://demo.goldwingmanagement.com)
+
+# Author
+David Do
