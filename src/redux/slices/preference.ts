@@ -16,27 +16,27 @@ export interface PreferenceState {
 // ----------------------------------------------------------------------
 
 const initialState = {
-  theme: 'Light',
-  error: null
+    theme: 'Light',
+    error: null
 } as PreferenceState;
 
 const slice = createSlice({
-  name: 'preference',
-  initialState,
-  reducers: {
-    setDarkMode(state: WritableDraft<PreferenceState>) {
-      state.theme = 'Dark';
-    },
+    name: 'preference',
+    initialState,
+    reducers: {
+        setDarkMode(state: WritableDraft<PreferenceState>) {
+            state.theme = 'Dark';
+        },
 
-    setLightMode(state: WritableDraft<PreferenceState>) {
-      state.theme = 'Light';
-    },
+        setLightMode(state: WritableDraft<PreferenceState>) {
+            state.theme = 'Light';
+        },
 
-    // SET ERROR
-    setError(state: WritableDraft<PreferenceState>, action: PayloadAction<string>) {
-      state.error = action.payload;
-    }
-  },
+        // SET ERROR
+        setError(state: WritableDraft<PreferenceState>, action: PayloadAction<string>) {
+            state.error = action.payload;
+        }
+    },
 });
 
 // Reducer

@@ -1,30 +1,4 @@
-import { LibrarySymbolInfo, ResolutionString, SubscribeBarsCallback } from "../charting_library/charting_library";
-import { OrderType, OrderTimeInForce, OrderState, AccountStatus, OrderSide } from "./enumerations";
-
-export interface Account {
-  name: string,
-  startingBalance: number,
-  endingBalance: number,
-  status: AccountStatus
-}
-
-export interface Order {
-  symbol: string,
-  side: OrderSide,
-  state: OrderState,
-  type: OrderType,
-  timeInForce: OrderTimeInForce,
-  expiration: Date,
-  openDate: Date,
-  closeDate: Date,
-  openPrice: number,
-  fillPrice: number,
-  closePrice: number,
-  stopLoss: number,
-  takeProfit: number,
-  profitLoss: number,
-  comment: string
-}
+import { LibrarySymbolInfo, ResolutionString, SubscribeBarsCallback } from '../charting_library/charting_library';
 
 export interface Sub {
   listenerGuid: string;

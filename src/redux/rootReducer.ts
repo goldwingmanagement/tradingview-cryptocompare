@@ -9,17 +9,17 @@ import preferenceReducer from './slices/preference';
 // ----------------------------------------------------------------------
 
 const rootPersistConfig = {
-  key: 'root',
-  storage,
-  keyPrefix: 'redux-',
-  whitelist: [],
+    key: 'root',
+    storage,
+    keyPrefix: 'redux-',
+    whitelist: [],
 };
 
 const rootReducer = combineReducers({
-  authentication: authenticationReducer,
-  modals: modalReducer,
-  market: marketReducer,
-  preference: preferenceReducer
+    authentication: authenticationReducer,
+    modals: modalReducer,
+    market: marketReducer,
+    preference: preferenceReducer
 });
 
 export { rootPersistConfig, rootReducer };

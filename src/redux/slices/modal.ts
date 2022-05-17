@@ -16,28 +16,28 @@ interface ModalState {
 // ----------------------------------------------------------------------
 
 const initialState = {
-  tradeModal: false,
-  ordersModal: false,
-  error: null
+    tradeModal: false,
+    ordersModal: false,
+    error: null
 } as ModalState;
 
 const slice = createSlice({
-  name: 'modal',
-  initialState,
-  reducers: {
-    toggleTradeModal(state: WritableDraft<ModalState>, _action: PayloadAction<string>) {
-      state.tradeModal = !state.tradeModal;
-    },
+    name: 'modal',
+    initialState,
+    reducers: {
+        toggleTradeModal(state: WritableDraft<ModalState>, _action: PayloadAction<string>) {
+            state.tradeModal = !state.tradeModal;
+        },
 
-    toggleOrdersModal(state: WritableDraft<ModalState>, _action: PayloadAction<string>) {
-      state.ordersModal = !state.ordersModal;
-    },
+        toggleOrdersModal(state: WritableDraft<ModalState>, _action: PayloadAction<string>) {
+            state.ordersModal = !state.ordersModal;
+        },
 
-    // SET ERROR
-    setError(state: WritableDraft<ModalState>, action: PayloadAction<string>) {
-      state.error = action.payload;
-    }
-  },
+        // SET ERROR
+        setError(state: WritableDraft<ModalState>, action: PayloadAction<string>) {
+            state.error = action.payload;
+        }
+    },
 });
 
 // Reducer
