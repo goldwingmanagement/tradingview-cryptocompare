@@ -16,7 +16,7 @@ export interface PreferenceState {
 // ----------------------------------------------------------------------
 
 const initialState = {
-  theme: 'Dark',
+  theme: 'Light',
   error: null
 } as PreferenceState;
 

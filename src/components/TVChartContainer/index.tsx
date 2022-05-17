@@ -128,14 +128,6 @@ class TVChartContainer extends React.PureComponent<Partial<ChartContainerProps>,
 					tvWidget.changeTheme('Dark');
 				});
 				darkButton.innerHTML = 'Dark';
-
-				const tradeButton = tvWidget.createButton({align: 'left'});
-				tradeButton.setAttribute('title', 'Trade');
-				tradeButton.classList.add('trade');
-				tradeButton.addEventListener('click', () => {
-					console.log('Popup trade modal');
-				});
-				tradeButton.innerHTML = 'Trade';
 			});
 			tvWidget.onContextMenu(function(unixtime: number, price: number): ContextMenuItem[] {
 				var items: ContextMenuItem[] = [{

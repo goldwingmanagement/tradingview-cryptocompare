@@ -29,7 +29,6 @@ const supportedResolution: ResolutionString[] = [
 	'360' as ResolutionString,
 	'480' as ResolutionString,
 	'720' as ResolutionString,
-	'1D' as ResolutionString,
 ];
 
 class Datafeed implements IBasicDataFeed {
